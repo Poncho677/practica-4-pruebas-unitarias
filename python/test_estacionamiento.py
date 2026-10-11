@@ -1,4 +1,3 @@
-
 import pytest
 
 from estacionamiento import Estacionamiento
@@ -10,8 +9,7 @@ def sistema():
     return Estacionamiento()
 
 
-# TODO:
-# 1. Casos normales.
+#  Casos normales.
 
 def test_normal_10_minutos_cliente_normal_no_paga(sistema):
     # Arrange
@@ -24,15 +22,17 @@ def test_normal_10_minutos_cliente_normal_no_paga(sistema):
     assert resultado == 0.0
 
 
-# 2. Casos frontera.
+def test_normal_45_minutos_
+#  Casos frontera.
 
 
-# 3. Entradas inválidas.
+#Entradas inválidas.
+"""
 # Usar pytest.raises.
 # Casos parametrizados con @pytest.mark.parametrize.
 # Use pytest.approx cuando el resultado esperado tenga decimales.
+"""
 
-
-# 4. Interacciones entre reglas.
+# Interacciones entre reglas.
 
 
