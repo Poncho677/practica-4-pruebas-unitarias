@@ -10,11 +10,10 @@ def sistema():
     return Estacionamiento()
 
 
-def test_ejemplo_inicial(sistema):
-    """
-    Esta prueba sólo sirve como punto de partida.
-    El alumno debe reemplazarla/complementarla con su diseño de casos.
-    """
+# TODO:
+# 1. Casos normales.
+
+def test_normal_10_minutos_cliente_normal_no_paga(sistema):
     # Arrange
     minutos = 10
 
@@ -25,10 +24,15 @@ def test_ejemplo_inicial(sistema):
     assert resultado == 0.0
 
 
-# TODO:
-# 1. Agregue casos normales.
-# 2. Agregue casos frontera.
-# 3. Agregue entradas inválidas con pytest.raises.
-# 4. Agregue casos parametrizados con @pytest.mark.parametrize.
-# 5. Use pytest.approx cuando el resultado esperado tenga decimales.
-# 6. Pruebe interacciones entre reglas.
+# 2. Casos frontera.
+
+
+# 3. Entradas inválidas.
+# Usar pytest.raises.
+# Casos parametrizados con @pytest.mark.parametrize.
+# Use pytest.approx cuando el resultado esperado tenga decimales.
+
+
+# 4. Interacciones entre reglas.
+
+
