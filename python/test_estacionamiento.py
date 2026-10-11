@@ -14,10 +14,8 @@ def sistema():
 def test_normal_10_minutos_cliente_normal_no_paga(sistema):
     # Arrange
     minutos = 10
-
     # Act
     resultado = sistema.calcular_total(minutos, "normal", False)
-
     # Assert
     assert resultado == 0
 
@@ -37,7 +35,7 @@ def test_normal_90_minutos_cliente_normal_paga_primera_hora_más_una_hora_adicio
     # Act
     resultado = sistema.calcular_total(minutos, "normal", False)
     # Assert
-    assert resultado == 35 # Falla: la implementación devuelve 20
+    assert resultado == 35.0 # Falla: la implementación devuelve 20.0
 
     
 #  Casos frontera.
@@ -52,7 +50,7 @@ def test_frontera_0_minutos_gratis(sistema):
 
 
 @pytest.mark.parametrize("minutos", [1, 14, 15])
-def test_frontera_limites_del_rango_gratis(sistema, minutos):
+def test_frontera_rango_gratis_limites_inferiores(sistema, minutos):
     # Arrange: @pytest.mark.parametrize
     # Act
     resultado = sistema.calcular_total(minutos, "normal", False)
@@ -61,7 +59,7 @@ def test_frontera_limites_del_rango_gratis(sistema, minutos):
 
 
 @pytest.mark.parametrize("minutos", [16, 17])
-def test_frontera_limites_del_rango_gratis(sistema, minutos):
+def test_frontera_rango_pago_limites_superiores(sistema, minutos):
     # Arrange: @pytest.mark.parametrize
     # Act
     resultado = sistema.calcular_total(minutos, "normal", False)
@@ -93,16 +91,41 @@ def test_frontera_121_minutos_dos_horas_adicionales(sistema):
     # Act
     resultado = sistema.calcular_total(minutos, "normal", False)
     # Assert
-    assert resultado == 50.0 # Falla: la implementación da 35
+    assert resultado == 50.0 # Falla: la implementación da 35.0
 
     
 #Entradas inválidas.
-"""
-# Usar pytest.raises.
-# Casos parametrizados con @pytest.mark.parametrize.
-# Use pytest.approx cuando el resultado esperado tenga decimales.
-"""
+
+def test_invalido_minutos_negativos_lanza_error(sistema):
+    # Arrange
+    minutos = -1
+    # Act / Assert
+    with pytest.raises(ValueError):
+        sistema.calcular_total(minutos, "normal", False)
+
+
+def test_invalido_tipo_cliente_con_mayuscula_lanza_error(sistema):
+    # Arrange
+    minutos = 30
+    # Act / Assert
+    with pytest.raises(ValueError):
+        sistema.calcular_total(minutos, "Normal", False)
 
 # Interacciones entre reglas.
 
+def test_interaccion_61_minutos_frecuente_aplica_descuento(sistema):
+    # Arrange
+    minutos = 61
+    # Act
+    resultado = sistema.calcular_total(minutos, "frecuente", False)
+    # Assert
+    assert resultado == pytest.approx(31.50) # Falla: la implementación da 18.0
 
+
+def test_interaccion_15_minutos_frecuente_sigue_siendo_gratis(sistema):
+    # Arrange
+    minutos = 15
+    # Act
+    resultado = sistema.calcular_total(minutos, "frecuente", False)
+    # Assert
+    assert resultado == pytest.approx(0.0) # Falla: la implementación da 18.0
