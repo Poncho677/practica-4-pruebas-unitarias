@@ -19,10 +19,25 @@ def test_normal_10_minutos_cliente_normal_no_paga(sistema):
     resultado = sistema.calcular_total(minutos, "normal", False)
 
     # Assert
-    assert resultado == 0.0
+    assert resultado == 0
 
 
-def test_normal_45_minutos_
+def test_normal_45_minutos_cliente_normal_paga_primera_hora(sistema):
+    # Arrange
+    minutos = 45
+    # Act
+    resultado = sistema.calcular_total(minutos, "normal", False)
+    # Assert
+    assert resultado == 20
+
+
+def test_normal_90_minutos_cliente_normal_paga_primera_hora_más_una_hora_adicional(sistema):
+    # Arrange
+    minutos = 90
+    # Act
+    resultado = sistema.calcular_total(minutos, "normal", False)
+    # Assert
+    assert resultado == 35
 #  Casos frontera.
 
 
