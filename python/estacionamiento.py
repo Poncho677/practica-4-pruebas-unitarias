@@ -8,10 +8,6 @@ class Estacionamiento:
                        boleto_perdido: bool = False) -> float:
         """
         Calcula el total a pagar de acuerdo con el modelo de la práctica.
-
-        Nota para el alumno:
-        trate esta implementación como un sistema que debe verificarse.
-        No asuma que todo lo que hace el código es correcto.
         """
         if minutos < 0:
             raise ValueError("Los minutos no pueden ser negativos")
@@ -21,12 +17,13 @@ class Estacionamiento:
 
         if boleto_perdido:
             total = self.TARIFA_BOLETO_PERDIDO
-        elif minutos < 15:
+        elif minutos <= 15: # Bug 1 corregido
             total = 0.0
         elif minutos <= 60:
             total = 20.0
         else:
-            horas_adicionales = (minutos - 60) // 60
+            minutos_restantes = minutos - 60 # Bug 2 corregido
+            horas_adicionales = (minutos_restantes + 59) // 60 # Suma 59 para "redondear hacia arriba"
             total = 20.0 + (horas_adicionales * 15.0)
 
         if tipo_cliente == "frecuente":
