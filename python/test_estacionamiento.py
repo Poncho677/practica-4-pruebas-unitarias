@@ -129,3 +129,26 @@ def test_interaccion_15_minutos_frecuente_sigue_siendo_gratis(sistema):
     resultado = sistema.calcular_total(minutos, "frecuente", False)
     # Assert
     assert resultado == pytest.approx(0.0) # Falla: la implementación da 18.0
+
+
+# Números decimales
+
+def test_decimales_181_minutos_frecuente(sistema):
+    # Arrange
+    minutos = 181
+    # Act
+    resultado = sistema.calcular_total(minutos, "frecuente", False)
+    # Assert
+    assert resultado == pytest.approx(58.50)  # Falla: la implementación devuelve 45.0
+
+
+# Caso adicional
+
+@pytest.mark.parametrize("minutos", [0, 15, 16, 60, 61, 120, 181, 600])
+@pytest.mark.parametrize("tipo", ["normal", "frecuente"])
+@pytest.mark.parametrize("perdido", [False, True])
+def test_adicional_costo_nunca_negativo(sistema, minutos, tipo, perdido):
+    # Arrange / Act
+    resultado = sistema.calcular_total(minutos, tipo, perdido)
+    # Assert
+    assert resultado >= 0.0
