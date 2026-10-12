@@ -1,4 +1,3 @@
-
 package mx.edu.practica4;
 
 import org.junit.jupiter.api.BeforeEach;
