@@ -1,4 +1,3 @@
-
 package mx.edu.practica4;
 
 public class Estacionamiento {
@@ -23,16 +22,17 @@ public class Estacionamiento {
 
         if (boletoPerdido) {
             total = TARIFA_BOLETO_PERDIDO;
-        } else if (minutos < 15) {
+        } else if (minutos <= 15) { // Bug 1: antes era "minutos < 15"
             total = 0.0;
         } else if (minutos <= 60) {
             total = 20.0;
         } else {
-            int horasAdicionales = (minutos - 60) / 60;
+	    int minutosRestantes = minutos - 60;
+            int horasAdicionales = (minutosRestantes + 59) / 60; // Bug 2: redondear hacia arriba
             total = 20.0 + (horasAdicionales * 15.0);
         }
 
-        if ("frecuente".equals(tipoCliente)) {
+        if ("frecuente".equals(tipoCliente) && !boletoPerdido) { // Bug 3: sin descuento con boleto perdido
             total *= 0.90;
         }
 
