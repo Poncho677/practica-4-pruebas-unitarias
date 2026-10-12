@@ -144,6 +144,15 @@ def test_interaccion_15_minutos_frecuente_sigue_siendo_gratis(sistema):
     # Assert
     assert resultado == pytest.approx(0.0) # Falla: la implementación original devuelve 18.0
 
+# R3 y R8: boleto perdido + cliente frecuente -> $300.00 (el descuento no aplica)
+def test_interaccion_10_minutos_frecuente_boleto_perdido_no_recibe_descuento(sistema):
+    # Arrange
+    minutos = 10
+    # Act
+    resultado = sistema.calcular_total(minutos, "frecuente", True)
+    # Assert
+    assert resultado == pytest.approx(300.0) # Falla: la implementación original devuelve 270.0
+
 
 # Números decimales
 
