@@ -193,7 +193,7 @@ class EstacionamientoTest {
     }
 
     @Test
-    void testBoletoPerdido_frecuente() {
+    void testBoletoPerdido_frecuente(){
 	// Arrange
 	int[] minutos = {0, 10, 15, 60, 78, 120, 121, 200};
 
