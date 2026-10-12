@@ -17,16 +17,16 @@ class Estacionamiento:
 
         if boleto_perdido:
             total = self.TARIFA_BOLETO_PERDIDO
-        elif minutos <= 15: # Bug 1 corregido
+        elif minutos <= 15: # Bug 1: antes era "minutos < 15"
             total = 0.0
         elif minutos <= 60:
             total = 20.0
         else:
-            minutos_restantes = minutos - 60 # Bug 2 corregido
+            minutos_restantes = minutos - 60 # Bug 2
             horas_adicionales = (minutos_restantes + 59) // 60 # Suma 59 para "redondear hacia arriba"
             total = 20.0 + (horas_adicionales * 15.0)
 
-        if tipo_cliente == "frecuente" and not boleto_perdido: #Bug 3 corregido
+        if tipo_cliente == "frecuente" and not boleto_perdido: #Bug 3: sin descuento con boleto perdido
             total *= 0.90
 
         return round(total, 2)
