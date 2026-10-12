@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: mx.edu.practica4.EstacionamientoTest
+-------------------------------------------------------------------------------
+Tests run: 50, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.111 s -- in mx.edu.practica4.EstacionamientoTest
