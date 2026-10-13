@@ -6,9 +6,7 @@ public class Estacionamiento {
 
     public double calcularTotal(int minutos, String tipoCliente, boolean boletoPerdido) {
         /*
-         * Nota para el alumno:
-         * trate esta implementación como un sistema que debe verificarse.
-         * No asuma que todo lo que hace el código es correcto.
+         * Calcula el total a pagar de acuerdo con el modelo de la práctica.
          */
         if (minutos < 0) {
             throw new IllegalArgumentException("Los minutos no pueden ser negativos");
